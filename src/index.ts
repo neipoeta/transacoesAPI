@@ -168,6 +168,6 @@ app.get('/users/:userId/transactions', (request: Request, response: Response) =>
                         })
 })
 
-app.listen((port), () => {
-    console.log('API rodando...')
+app.listen(port, () => {
+    console.log('API rodando...');
 });
