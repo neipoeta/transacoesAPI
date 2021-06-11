@@ -1,12 +1,16 @@
-import express, { Response, Request } from "express";
-import User from './User';
-import Transaction from './Transaction';
-import { v4 as uuidGenerator } from 'uuid';
+import express, { Response, Request } from "express"
+import User from './User'
+import Transaction from './Transaction'
+import dotenv from 'dotenv'
+import cors from 'cors'
 
-const app = express();
+const app = express()
+dotenv.config()
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const port = process.env.PORT || 8080
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cors());
 
 app.get('/user', (request: Request, response: Response) => {
     response.send('Hello world')
@@ -43,7 +47,7 @@ app.get('/users/:id', (request: Request, response: Response) => {
 
 app.get('/users', (request: Request, response: Response) => {
     return response.json({users})
- });
+ }); 
  
 app.put('/users/:id', (request: Request, response: Response) => {
     const { id } = request.params;
@@ -164,6 +168,6 @@ app.get('/users/:userId/transactions', (request: Request, response: Response) =>
                         })
 })
 
-app.listen((8080), () => {
+app.listen((port), () => {
     console.log('API rodando...')
 });
