@@ -1,13 +1,17 @@
-import express, { Response, Request } from "express"
+import express, { Request, Response } from 'express'
+import { v4 as uuidGenerator } from 'uuid'
+import cors from 'cors'
+import dotenv from 'dotenv'
+
 import User from './User'
 import Transaction from './Transaction'
-import dotenv from 'dotenv'
-import cors from 'cors'
+
 
 const app = express()
 dotenv.config()
 
 const port = process.env.PORT || 8080
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cors());
